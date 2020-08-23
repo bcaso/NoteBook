@@ -15,3 +15,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+!!! note
+    There can be no other files in the same level directory of mkdocs.yml, including README.MD, temporary files of vim are fine
