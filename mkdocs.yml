@@ -1,0 +1,90 @@
+# mkdocs.yml 配置范例: https://cyent.github.io/markdown-with-mkdocs-material/appendix/yml/
+site_name: MyNoteBook # yml字符串
+site_author: bcaso
+theme: # {{{
+  name: 'material'
+  palette:                  # pal.ette 调色板, 读音: 派 乐儿 特, 删除这个数组后, 就是默认的蓝白色主题
+    primary: 'Blue Grey'    # 蓝灰色
+
+# theme_end }}}
+markdown_extensions: # {{{
+  - admonition               # !!!note注视块
+  - codehilite:
+      guess_lang: false
+      linenums: true         # 这里是行号的开关, 使用: c linenums='1'
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+# markdown_extensions_end }}} 
+
+
+
+
+nav: # yml数组
+  - Home: index.md
+  - Programming: # {{{
+    - C:
+       - Pointer:
+         - "指针是const.与所指是const.md":   ./Programming/C/Pointer/指针是const.与所指是const.md
+         - "指针运算.md":                    ./Programming/C/Pointer/指针运算.md
+         - "用数组作函数参数.md":            ./Programming/C/Pointer/用数组作函数参数.md
+
+    - CSharp:
+       - Design pattern:
+         - "状态模式.md": ./Programming/CSharp/Design pattern/状态模式.md
+
+
+    - HTML:
+       - "左右两框架之左边目录left":   ./Programming/Html/左右两框架之左边目录left.html
+       - "表格的测试":                 ./Programming/Html/表格的测试.md
+       - "超链接锚点的测试":           ./Programming/Html/超链接锚点的测试.md
+
+
+    - bat:
+       - "控制台命令":            ./Programming/bat/2019.02.21.md 
+
+   # Programming_end }}}
+  - Android: # {{{
+    - "ADB常用命令":             ./Android/ADB常用命令.md
+    - "修改mac地址(无效)":       ./Android/MIUI9修改MAC地址.md
+    - "root后要装的手机软件":           ./Android/root后要装的手机软件.md
+    - "使用ADB命令在手机与电脑间互传文件":        ./Android/使用ADB命令在手机与电脑间互传文件.md
+    - "手机刷入TWRP Recovery":         ./Android/手机刷入TWRP Recovery.md
+    - "设置手机分辨率":          ./Android/设置手机分辨率.md
+    # Android_end }}}
+  - Tools: # {{{
+    - Au: 
+       - "about_Au":             ./Tools/AU/about_Au.md
+    - Pr: 
+       - "加速视频且不改变声调": ./Tools/PR/加速视频且不改变声调.md      
+    - Windows_Terminal:
+      - "WSL使用":               ./Tools/Windows_Terminal/WSL使用.md
+    - Git:
+      - "Git command usage":     ./Tools/Git/git_command.md
+    # Tools_end }}}
+  - English: # {{{
+    - "写作高级短句":                        ./English/写作高级短句.md
+    - "听力技巧课(欧阳萍)":                  "./English/听力技巧课 欧阳萍.md"
+    - "英语":                                ./English/万能神句.md
+    - "音标听力词句":                        ./English/音标听力词句.md
+    # English_end }}}
+  - Excel:
+    - "anki制卡技巧":                        "./Excel/anki制卡（错位复制）.md"
