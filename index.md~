@@ -10,11 +10,13 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * `mkdocs -h` - Print help message and exit.
 
 ## Project layout
-
+```
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+```
+<br/>
 
 !!! note
-    There can be no other files in the same level directory of mkdocs.yml, including README.MD, temporary files of vim are fine
+    There can be no other files in the same level directory of mkdocs.yml, including README.MD, but temporary files of vim are fine
