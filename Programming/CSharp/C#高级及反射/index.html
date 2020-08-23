@@ -1,0 +1,2008 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="bcaso">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>C#高级及反射 - MyNoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.b8ac9624.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.28f3ef9a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="MyNoteBook" class="md-header-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MyNoteBook
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              C#高级及反射
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MyNoteBook" class="md-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    MyNoteBook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Programming
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Programming" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Programming
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      Pointer
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pointer" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pointer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E6%98%AFconst.%E4%B8%8E%E6%89%80%E6%8C%87%E6%98%AFconst/" title="指针是const.与所指是const.md" class="md-nav__link">
+      指针是const.与所指是const.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97/" title="指针运算.md" class="md-nav__link">
+      指针运算.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E7%94%A8%E6%95%B0%E7%BB%84%E4%BD%9C%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" title="用数组作函数参数.md" class="md-nav__link">
+      用数组作函数参数.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      CSharp
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="CSharp" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        CSharp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1">
+    
+    <label class="md-nav__link" for="nav-2-2-1">
+      Design pattern
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Design pattern" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Design pattern
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Design%20pattern/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态模式.md" class="md-nav__link">
+      状态模式.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      HTML
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="HTML" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        HTML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E5%B7%A6%E5%8F%B3%E4%B8%A4%E6%A1%86%E6%9E%B6%E4%B9%8B%E5%B7%A6%E8%BE%B9%E7%9B%AE%E5%BD%95left.html" title="左右两框架之左边目录left" class="md-nav__link">
+      左右两框架之左边目录left
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%B5%8B%E8%AF%95/" title="表格的测试" class="md-nav__link">
+      表格的测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%B6%85%E9%93%BE%E6%8E%A5%E9%94%9A%E7%82%B9%E7%9A%84%E6%B5%8B%E8%AF%95/" title="超链接锚点的测试" class="md-nav__link">
+      超链接锚点的测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      bat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="bat" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        bat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bat/2019.02.21/" title="控制台命令" class="md-nav__link">
+      控制台命令
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Android" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="ADB常用命令" class="md-nav__link">
+      ADB常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/MIUI9%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80/" title="修改mac地址(无效)" class="md-nav__link">
+      修改mac地址(无效)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/root%E5%90%8E%E8%A6%81%E8%A3%85%E7%9A%84%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6/" title="root后要装的手机软件" class="md-nav__link">
+      root后要装的手机软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E4%BD%BF%E7%94%A8ADB%E5%91%BD%E4%BB%A4%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/" title="使用ADB命令在手机与电脑间互传文件" class="md-nav__link">
+      使用ADB命令在手机与电脑间互传文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E6%89%8B%E6%9C%BA%E5%88%B7%E5%85%A5TWRP%20Recovery/" title="手机刷入TWRP Recovery" class="md-nav__link">
+      手机刷入TWRP Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E8%AE%BE%E7%BD%AE%E6%89%8B%E6%9C%BA%E5%88%86%E8%BE%A8%E7%8E%87/" title="设置手机分辨率" class="md-nav__link">
+      设置手机分辨率
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Au
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Au" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Au
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/AU/about_Au/" title="about_Au" class="md-nav__link">
+      about_Au
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Pr
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pr" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pr
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/PR/%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E4%B8%94%E4%B8%8D%E6%94%B9%E5%8F%98%E5%A3%B0%E8%B0%83/" title="加速视频且不改变声调" class="md-nav__link">
+      加速视频且不改变声调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Windows_Terminal
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Windows_Terminal" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Windows_Terminal
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Windows_Terminal/WSL%E4%BD%BF%E7%94%A8/" title="WSL使用" class="md-nav__link">
+      WSL使用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Git
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Git/git_command/" title="Git command usage" class="md-nav__link">
+      Git command usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      English
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="English" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        English
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%86%99%E4%BD%9C%E9%AB%98%E7%BA%A7%E7%9F%AD%E5%8F%A5/" title="写作高级短句" class="md-nav__link">
+      写作高级短句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%90%AC%E5%8A%9B%E6%8A%80%E5%B7%A7%E8%AF%BE%20%E6%AC%A7%E9%98%B3%E8%90%8D/" title="听力技巧课(欧阳萍)" class="md-nav__link">
+      听力技巧课(欧阳萍)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E4%B8%87%E8%83%BD%E7%A5%9E%E5%8F%A5/" title="英语" class="md-nav__link">
+      英语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E9%9F%B3%E6%A0%87%E5%90%AC%E5%8A%9B%E8%AF%8D%E5%8F%A5/" title="音标听力词句" class="md-nav__link">
+      音标听力词句
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Excel
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Excel" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Excel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Excel/anki%E5%88%B6%E5%8D%A1%EF%BC%88%E9%94%99%E4%BD%8D%E5%A4%8D%E5%88%B6%EF%BC%89/" title="anki制卡技巧" class="md-nav__link">
+      anki制卡技巧
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 动态创建对象
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 动态创建对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 无参构造函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 有参构造函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 访问类中成员
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 访问类中成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 读写字段
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 访问类中的方法
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 访问类中的方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 无参方法
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 无参方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#void" class="md-nav__link">
+    void 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static" class="md-nav__link">
+    static 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    有返回值的方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 有参方法
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 有参方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#void-static-void" class="md-nav__link">
+    void 方法 和 static void方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    有返回值的方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    有参有返回值的重载方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <!--这是一个锚点，名称为"Head", 类型为"#", 也是一个空的超链接-->
+
+<p><a href = "#" name = "Head"></a></p>
+<p>[toc]</p>
+<h1 id="c">C#高级之反射<a class="headerlink" href="#c" title="Permanent link">&para;</a></h1>
+<p><!--这是一个锚点，名称为"chapter1", 类型为"#", 也是一个空的超链接-->
+<a href = "#" name = "chapter1"></a></p>
+<h2 id="1">1. 动态创建对象<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p><code>BindingFlags</code>: 要访问的字段或方法的权限描述，
+必须要同时具备两个描述：
+ 1.要有访问的成员的访问权限描述 
+ 2.要有访问的成员的归属描述
+必须与 Public | NonPublic 一起指定 Instance | Static,否则不返回成员
+简而言之，就是<code>是否为public | 是否为Static</code>
+这么说可能有问题，但就下面的例子来说，可以这么理解。</p>
+<h3 id="11">1.1 无参构造函数<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>```csharp?linenums
+/****************************************************
+    文件：Program.cs
+    作者：WQ
+    邮箱: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>
+    日期：2019/04/21 18:06
+    功能：C#高级之反射练习       <br />
+*****************************************************/</p>
+<p>using System;</p>
+<p>namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// <summary>
+        /// 构造函数默认都是public且无参的
+        /// </summary>
+        public PersonPublicCtor() {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }
+    }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>class PersonPrivateCtor {
+    private PersonPrivateCtor() {
+        Console.WriteLine(GetType() + &quot;/PersonPrivateCtor() private且无参的构造方法被调用&quot;);
+    }
+}
+
+class Program {
+    static void Main(string[] args) {
+        //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化
+        Type   person1    = Type.GetType(&quot;ConsoleApp1.PersonPublicCtor&quot;); //要实例化的对象的类有命名空间的话需要加上
+        Object person1Obj = Activator.CreateInstance(person1);
+
+
+        //实例化一个具有私有构造函数的对象
+        Type   person2    = Type.GetType(&quot;ConsoleApp1.PersonPrivateCtor&quot;); //要实例化的对象的类有命名空间的话需要加上
+        Object person2Obj = Activator.CreateInstance(person2, true);//第二个参数为true表示可以匹配任何权限的无参构造方法
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+```
+<img alt="执行结果" src="https://i.loli.net/2019/04/21/5cbc633e299f6.jpg" />
+
+<a href = "#Head" title = "跳转到目录">返回顶层</a></p>
+<h3 id="12">1.2 有参构造函数<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p><code>csharp?linenums
+/****************************************************
+    文件：Program.cs
+    作者：WQ
+    邮箱: bcaso@qq.com
+    日期：2019/04/21 18:06
+    功能：C#高级之反射练习         
+*****************************************************/
+
+using System;
+using System.Reflection;
+
+namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// &lt;summary&gt;
+        /// 构造函数默认都是public且无参的
+        /// &lt;/summary&gt;
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }
+    }
+
+    class PersonPrivateCtor {
+        private PersonPrivateCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPrivateCtor() private且无参的构造方法被调用");
+        }
+    }
+
+    class Program {
+        static void Main(string[] args) {
+            //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化
+            Type   person1    = Type.GetType("ConsoleApp1.PersonPublicCtor");        //要实例化的对象的类有命名空间的话需要加上
+            Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, "Hello"); //最后一个参数是params objects[] args类型
+
+
+            //实例化一个具有私有构造函数的对象
+            Type person2 = Type.GetType("ConsoleApp1.PersonPrivateCtor"); //要实例化的对象的类有命名空间的话需要加上
+            // NonPublic = 32 | Instance = 4,
+            // 0x00000020     | 4
+            // ‭00100000‬       | ‭0100‬
+            //     0100 
+            // 00100100 → 36
+            Object person2Obj =
+                Activator.CreateInstance(
+                                         person2,                                       //type
+                                         BindingFlags.NonPublic | BindingFlags.Instance, //bindingAttr
+                                         null,                                           //binder
+                                         new Object[] {1, 2.0, "string"},                //args
+                                         null                                            //culture
+                                        ); 
+        }
+    }
+}</code>
+<a href = "#Head" title = "跳转到目录">返回顶层</a></p>
+<!--这是一个锚点，名称为"chapter2", 类型为"#", 也是一个空的超链接-->
+
+<p><a href = "#" name = "chapter2"></a></p>
+<h2 id="2">2. 访问类中成员<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>非静态的类中的字段，需要通过对象访问，静态类中的字段需要通过类访问。
+所以在给字段设置值时，如果是静态类，则对象可以为空，或者任意值，如果是普通类，则需要填入类。</p>
+<h3 id="21">2.1 读写字段<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>```csharp?linenums
+/****************************************************
+    文件：Program.cs
+    作者：WQ
+    邮箱: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>
+    日期：2019/04/22 10:37
+    功能：C#高级之反射练习
+*****************************************************/</p>
+<p>using System;
+using System.Reflection;</p>
+<p>namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        public  int a;
+        private int b;</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    public static  int c;
+    private static int d;
+
+
+    /// &lt;summary&gt;
+    /// 构造函数默认都是public且无参的
+    /// &lt;/summary&gt;
+    public PersonPublicCtor(int a, double b, string c) {
+        Console.WriteLine(GetType() + &quot;/PersonPublicCtor() public且无参的构造方法被调用&quot;);
+    }
+}
+
+class PersonPrivateCtor {
+    public  int a2;
+    private int b2;
+
+    public static  int c2;
+    private static int d2;
+
+    private PersonPrivateCtor(int a, double b, string c) {
+        Console.WriteLine(GetType() + &quot;/PersonPrivateCtor() private且无参的构造方法被调用&quot;);
+    }
+}
+
+class Program {
+    static void Main(string[] args) {
+        //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化
+        Type   person1    = Type.GetType(&quot;ConsoleApp1.PersonPublicCtor&quot;);        //要实例化的对象的类有命名空间的话需要加上
+        Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, &quot;Hello&quot;); //最后一个参数是params objects[] args类型
+
+        //访问 public int a
+        //因为要访问的字段是 public 非 static的，所以 可以简写为 FieldInfo a = person1.GetField(&quot;a&quot;); 
+        FieldInfo a = person1.GetField(&quot;a&quot;, BindingFlags.Public | BindingFlags.Instance);
+        a.SetValue(person1Obj, 1);                        //给person1Obj的a字段进行赋值，赋值为1
+        int aa = Convert.ToInt32(a.GetValue(person1Obj)); //获取person1Obj的字段a的值,返回值是object类型，所以要进行强制转转换
+        Console.WriteLine(&quot;public int a = &quot; + aa);
+
+        //访问 private int b
+        FieldInfo b = person1.GetField(&quot;b&quot;, BindingFlags.NonPublic | BindingFlags.Instance);
+        b.SetValue(person1Obj, 2);
+        int bb = Convert.ToInt32(b.GetValue(person1Obj));
+        Console.WriteLine(&quot;private int b = &quot; + bb);
+
+        //访问 public static  int c
+        FieldInfo c = person1.GetField(&quot;c&quot;, BindingFlags.Public | BindingFlags.Static);
+        c.SetValue(person1Obj, 0);
+        c.SetValue(null, 3); //为静态字段设置值时，第一个参数（object对象）可以为任意值，一般使用null
+        int cc = Convert.ToInt32(c.GetValue(person1Obj));
+        cc = Convert.ToInt32(c.GetValue(null)); //同上，可以为null
+        Console.WriteLine(&quot;public static int c = &quot; + cc);
+
+        //访问 private static int d
+        FieldInfo d = person1.GetField(&quot;d&quot;, BindingFlags.NonPublic | BindingFlags.Static);
+        d.SetValue(person1Obj, 0);
+        d.SetValue(null, 4); //为静态字段设置值时，第一个参数（object对象）可以为任意值，一般使用null
+        int dd = Convert.ToInt32(d.GetValue(person1Obj));
+        dd = Convert.ToInt32(d.GetValue(null)); //同上，可以为null
+        Console.WriteLine(&quot;private static int d = &quot; + dd);
+
+
+        //实例化一个具有私有构造函数的对象
+        Type person2 = Type.GetType(&quot;ConsoleApp1.PersonPrivateCtor&quot;); //要实例化的对象的类有命名空间的话需要加上
+        // NonPublic = 32 | Instance = 4,
+        // 0x00000020     | 4
+        // ‭00100000‬       | ‭0100‬
+        //     0100 
+        // 00100100 → 36
+        Object person2Obj =
+            Activator.CreateInstance(
+                                     person2,                                        //type
+                                     BindingFlags.NonPublic | BindingFlags.Instance, //bindingAttr
+                                     null,                                           //binder
+                                     new Object[] {1, 2.0, &quot;string&quot;},                //args
+                                     null                                            //culture
+                                    );
+
+        //当实例化出一个对象后，下面的对字段的操作同上
+        //访问 public int a2
+        //同上，可以简写为：FieldInfo a2 = person2.GetField(&quot;a2&quot;);
+        FieldInfo a2 = person2.GetField(&quot;a2&quot;, BindingFlags.Public | BindingFlags.Instance);
+        a2.SetValue(person2Obj, 11);
+        int aa2 = Convert.ToInt32(a2.GetValue(person2Obj));
+        Console.WriteLine(&quot;public int a2 = &quot; + aa2);
+
+        //访问 private int b2
+        FieldInfo b2 = person2.GetField(&quot;b2&quot;, BindingFlags.NonPublic | BindingFlags.Instance);
+        b2.SetValue(person2Obj, 22);
+        int bb2 = Convert.ToInt32(b2.GetValue(person2Obj));
+        Console.WriteLine(&quot;private int b2 = &quot; + bb2);
+
+        //访问 public static  int c2
+        FieldInfo c2 = person2.GetField(&quot;c2&quot;, BindingFlags.Public | BindingFlags.Static);
+        c2.SetValue(person2Obj, 0);
+        c2.SetValue(null, 33); //为静态字段设置值时，第一个参数（object对象）可以为任意值，一般使用null
+        int cc2 = Convert.ToInt32(c2.GetValue(person2Obj));
+        cc2 = Convert.ToInt32(c2.GetValue(null)); //同上，可以为null
+        Console.WriteLine(&quot;public static int c2 = &quot; + cc2);
+
+        //访问 private static int d2
+        FieldInfo d2 = person2.GetField(&quot;d2&quot;, BindingFlags.NonPublic | BindingFlags.Static);
+        d2.SetValue(person2Obj, 0);
+        d2.SetValue(null, 44); //为静态字段设置值时，第一个参数（object对象）可以为任意值，一般使用null
+        int dd2 = Convert.ToInt32(d2.GetValue(person2Obj));
+        dd2 = Convert.ToInt32(d2.GetValue(null)); //同上，可以为null
+        Console.WriteLine(&quot;private static int d2 = &quot; + dd2);
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+<code>``
+![执行结果](https://i.loli.net/2019/04/22/5cbd2978e1918.jpg)</code>d2.SetValue(null, 44); //为静态字段设置值时，第一个参数（object对象）可以为任意值，一般使用null`</p>
+<blockquote>
+<p>第一个参数表示对象，object类型，在SetValue中没有使用，因为没有意义???，所以可以为任意值，一般使用null。</p>
+<p><code>dd2 = Convert.ToInt32(d2.GetValue(null)); //同上，可以为null</code></p>
+<p><a href = "#Head" title = "跳转到目录">返回顶层</a></p>
+<p><!--这是一个锚点，名称为"chapter3", 类型为"#", 也是一个空的超链接-->
+<a href = "#" name = "chapter3"></a></p>
+</blockquote>
+<h2 id="3">3. 访问类中的方法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>由于篇幅原因，不再展示带有私有构造函数的类的函数的调用，当对象被实例化后，函数的调用形式一样。</p>
+<h3 id="31">3.1 无参方法<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<h4 id="void">void 方法<a class="headerlink" href="#void" title="Permanent link">&para;</a></h4>
+<p><code>csharp?linenums
+/****************************************************
+    文件：Program.cs
+    作者：WQ
+    邮箱: bcaso@qq.com
+    日期：2019/04/22 10:37
+    功能：C#高级之反射练习
+*****************************************************/
+
+using System;
+using System.Reflection;
+
+namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// &lt;summary&gt;
+        /// 构造函数默认都是public且无参的
+        /// &lt;/summary&gt;
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }
+
+        public void ShowA() {
+            Console.WriteLine("public void ShowA();");
+        }
+
+        private void ShowB() {
+            Console.WriteLine("private void ShowB();");
+        }
+    }
+
+
+    class Program {
+        static void Main(string[] args) {
+            //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化
+            Type   person1    = Type.GetType("ConsoleApp1.PersonPublicCtor");        //要实例化的对象的类有命名空间的话需要加上
+            Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, "Hello"); //最后一个参数是params objects[] args类型
+
+            //public void ShowA();
+            MethodInfo method0ShowA = person1.GetMethod("ShowA",BindingFlags.Public|BindingFlags.Instance);
+            method0ShowA.Invoke(person1Obj, null); //参数为：调用对象，方法的参数列表
+
+            //private void ShowB();
+            MethodInfo methodShowB = person1.GetMethod("ShowB", BindingFlags.NonPublic | BindingFlags.Instance);
+            methodShowB.Invoke(person1Obj, null); //参数为：调用对象，方法的参数列表
+        }
+    }
+}</code></p>
+<h4 id="static">static 方法<a class="headerlink" href="#static" title="Permanent link">&para;</a></h4>
+<p>```csharp?linenums
+/**************************************************** 
+    文件：Program.cs 
+    作者：WQ 
+    邮箱: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a> 
+    日期：2019/04/22 10:37 
+    功能：C#高级之反射练习 
+*****************************************************/ </p>
+<p>using System; 
+using System.Reflection; </p>
+<p>namespace ConsoleApp1 { 
+    class PersonPublicCtor { 
+        /// <summary> 
+        /// 构造函数默认都是public且无参的 
+        /// </summary> 
+        public PersonPublicCtor(int a, double b, string c) { 
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用"); 
+        } </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    public static void ShowC() {
+        Console.WriteLine(&quot;public static void ShowC();&quot;);
+    }
+
+    private static void ShowD() {
+        Console.WriteLine(&quot;private static void ShowD();&quot;);
+    } 
+}
+
+
+class Program { 
+    static void Main(string[] args) { 
+        //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化 
+        Type   person1    = Type.GetType(&quot;ConsoleApp1.PersonPublicCtor&quot;);        //要实例化的对象的类有命名空间的话需要加上 
+        Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, &quot;Hello&quot;); //最后一个参数是params objects[] args类型
+
+        //public static void ShowC();
+        MethodInfo methodShowC = person1.GetMethod(&quot;ShowC&quot;, BindingFlags.Public | BindingFlags.Static);
+        methodShowC.Invoke(null, null); //参数为：调用对象（静态方法可以为null,或任意值），方法的参数列表
+
+        //private static void ShowD();
+        MethodInfo methodShowD = person1.GetMethod(&quot;ShowD&quot;, BindingFlags.NonPublic | BindingFlags.Static);
+        methodShowD.Invoke(null, null); //参数为：调用对象（静态方法可以为null,或任意值），方法的参数列表
+    } 
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>} 
+```
+</p>
+<h4 id="_1">有返回值的方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p><code>csharp?linenums
+/**************************************************** 
+    文件：Program.cs 
+    作者：WQ 
+    邮箱: bcaso@qq.com 
+    日期：2019/04/22 10:37 
+    功能：C#高级之反射练习 
+*****************************************************/
+
+using System;
+using System.Reflection;
+
+namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// &lt;summary&gt; 
+        /// 构造函数默认都是public且无参的 
+        /// &lt;/summary&gt; 
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }
+
+
+        public string ShowA() {
+            return "public string ShowA()";
+        }
+
+        private string ShowB() {
+            return "private string ShowB()";
+        }
+
+        public static string ShowC() {
+            return "public static string ShowC()";
+        }
+
+        private static string ShowD() {
+            return "private static string ShowD()";
+        }
+    }
+
+
+    class Program {
+        static void Main(string[] args) {
+            //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化 
+            Type   person1    = Type.GetType("ConsoleApp1.PersonPublicCtor");        //要实例化的对象的类有命名空间的话需要加上 
+            Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, "Hello"); //最后一个参数是params objects[] args类型 
+
+            //public string ShowA() 
+            MethodInfo methodShowA = person1.GetMethod("ShowA", BindingFlags.Public | BindingFlags.Instance);
+            //public object Invoke(object obj, object[] parameters) 
+            //Invoke返回值为object类型，即函数的返回值, 需要强转为需要的类型,ToString()就是转换为string类型 
+            Console.WriteLine(methodShowA.Invoke(person1Obj, null).ToString());
+
+            //private string ShowB(); 
+            MethodInfo methodShowB = person1.GetMethod("ShowB", BindingFlags.NonPublic | BindingFlags.Instance);
+            Console.WriteLine(methodShowB.Invoke(person1Obj, null).ToString());
+
+            //public static string ShowC(); 
+            MethodInfo methodShowC = person1.GetMethod("ShowC", BindingFlags.Public | BindingFlags.Static);
+            Console.WriteLine(methodShowC.Invoke(null, null).ToString());
+
+            //private static string ShowD(); 
+            MethodInfo methodShowD = person1.GetMethod("ShowD", BindingFlags.NonPublic | BindingFlags.Static);
+            Console.WriteLine(methodShowD.Invoke(null, null).ToString());
+        }
+    }
+}</code>
+<img alt="有返回值的方法" src="https://i.loli.net/2019/04/22/5cbd502f6f6f4.jpg" /></p>
+<h3 id="32">3.2 有参方法<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<h4 id="void-static-void">void 方法 和 static void方法<a class="headerlink" href="#void-static-void" title="Permanent link">&para;</a></h4>
+<p>```csharp?linenums
+/**************************************************** 
+    文件：Program.cs 
+    作者：WQ 
+    邮箱: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a> 
+    日期：2019/04/22 10:37 
+    功能：C#高级之反射练习 
+*****************************************************/</p>
+<p>using System;
+using System.Reflection;</p>
+<p>namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// <summary> 
+        /// 构造函数默认都是public且无参的 
+        /// </summary> 
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    public void ShowA(int a, double b, string c) {
+        Console.WriteLine(&quot;public void ShowA(int a, double b, string c)()&quot;);
+    }
+
+    private void ShowB(int a, double b, string c) {
+        Console.WriteLine(&quot;private void ShowB(int a, double b, string c)()&quot;);
+    }
+
+    public static void ShowC(int a, double b, string c) {
+        Console.WriteLine(&quot;public static void ShowC(int a, double b, string c)()&quot;);
+    }
+
+    private static void ShowD(int a, double b, string c) {
+        Console.WriteLine(&quot;private static void ShowD(int a, double b, string c)()&quot;);
+    }
+}
+
+
+class Program {
+    static void Main(string[] args) {
+        //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化 
+        Type   person1    = Type.GetType(&quot;ConsoleApp1.PersonPublicCtor&quot;);        //要实例化的对象的类有命名空间的话需要加上 
+        Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, &quot;Hello&quot;); //最后一个参数是params objects[] args类型
+
+        //public void ShowA() 
+        MethodInfo methodShowA = person1.GetMethod(&quot;ShowA&quot;, BindingFlags.Public | BindingFlags.Instance);
+        //public object Invoke(object obj, object[] parameters) 
+        methodShowA.Invoke(person1Obj, new object[] {1, 2.0f, &quot;string&quot;});
+
+        //private void ShowB(); 
+        MethodInfo methodShowB = person1.GetMethod(&quot;ShowB&quot;, BindingFlags.NonPublic | BindingFlags.Instance);
+        methodShowB.Invoke(person1Obj, new object[] {1, 2.0f, &quot;string&quot;});
+
+        //public static void ShowC(); 
+        MethodInfo methodShowC = person1.GetMethod(&quot;ShowC&quot;, BindingFlags.Public | BindingFlags.Static);
+        methodShowC.Invoke(null, new object[] {1, 2.0f, &quot;string&quot;});
+
+        //private static void ShowD(); 
+        MethodInfo methodShowD = person1.GetMethod(&quot;ShowD&quot;, BindingFlags.NonPublic | BindingFlags.Static);
+        methodShowD.Invoke(null, new object[] {1, 2.0f, &quot;string&quot;});
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+```
+<img alt="void 方法 和 static void方法" src="https://i.loli.net/2019/04/22/5cbd4e929e8dc.jpg" />
+</p>
+<h4 id="_2">有返回值的方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p><code>csharp?linenums
+/**************************************************** 
+    文件：Program.cs 
+    作者：WQ 
+    邮箱: bcaso@qq.com 
+    日期：2019/04/22 10:37 
+    功能：C#高级之反射练习 
+*****************************************************/
+
+using System;
+using System.Reflection;
+
+namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// &lt;summary&gt; 
+        /// 构造函数默认都是public且无参的 
+        /// &lt;/summary&gt; 
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }
+
+
+        public string ShowA(int a, double b, string c) {
+            return "public string ShowA()";
+        }
+
+        private string ShowB(int a, double b, string c) {
+            return "private string ShowB()";
+        }
+
+        public static string ShowC(int a, double b, string c) {
+            return "public static string ShowC()";
+        }
+
+        private static string ShowD(int a, double b, string c) {
+            return "private static string ShowD()";
+        }
+    }
+
+
+    class Program {
+        static void Main(string[] args) {
+            //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化 
+            Type   person1    = Type.GetType("ConsoleApp1.PersonPublicCtor");        //要实例化的对象的类有命名空间的话需要加上 
+            Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, "Hello"); //最后一个参数是params objects[] args类型 
+
+            //public string ShowA() 
+            MethodInfo methodShowA = person1.GetMethod("ShowA", BindingFlags.Public | BindingFlags.Instance);
+            //public object Invoke(object obj, object[] parameters) 
+            //Invoke返回值为object类型，即函数的返回值, 需要强转为需要的类型,ToString()就是转换为string类型 
+            Console.WriteLine(methodShowA.Invoke(person1Obj, new object[] {1, 2.0f, "string"}).ToString());
+
+
+            //private string ShowB(); 
+            MethodInfo methodShowB = person1.GetMethod("ShowB", BindingFlags.NonPublic | BindingFlags.Instance);
+            Console.WriteLine(methodShowB.Invoke(person1Obj, new object[] {1, 2.0f, "string"}).ToString());
+
+
+            //public static string ShowC(); 
+            MethodInfo methodShowC = person1.GetMethod("ShowC", BindingFlags.Public | BindingFlags.Static);
+            Console.WriteLine(methodShowC.Invoke(null, new object[] {1, 2.0f, "string"}).ToString());
+
+            //private static string ShowD(); 
+            MethodInfo methodShowD = person1.GetMethod("ShowD", BindingFlags.NonPublic | BindingFlags.Static);
+            Console.WriteLine(methodShowD.Invoke(null, new object[] {1, 2.0f, "string"}).ToString());
+        }
+    }
+}</code>
+<img alt="有返回值的方法" src="https://i.loli.net/2019/04/22/5cbd4f360d4df.jpg" /></p>
+<h4 id="_3">有参有返回值的重载方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>```csharp?linenums
+/****************************************************<br />
+    文件：Program.cs<br />
+    作者：WQ<br />
+    邮箱: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#99;&#97;&#115;&#111;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a><br />
+    日期：2019/04/22 10:37<br />
+    功能：C#高级之反射练习<br />
+*****************************************************/</p>
+<p>using System;
+using System.Reflection;</p>
+<p>namespace ConsoleApp1 {
+    class PersonPublicCtor {
+        /// <summary><br />
+        /// 构造函数默认都是public且无参的<br />
+        /// </summary><br />
+        public PersonPublicCtor(int a, double b, string c) {
+            Console.WriteLine(GetType() + "/PersonPublicCtor() public且无参的构造方法被调用");
+        }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    public string Show(int a, double b, string c) {
+        return &quot;public string ShowA()&quot;;
+    }
+
+    private int Show(double b, int a, string c) {
+        return a;
+    }
+
+    public static int Show(string a, int b, string c) {
+        return b;
+    }
+
+    private static int Show(int a, double b, int c) {
+        return a;
+    }
+}
+
+
+class Program {
+    static void Main(string[] args) {
+        //实例化一个具有公共构造函数的对象，默认会使用public权限的无参的构造方法来实例化  
+        Type   person1    = Type.GetType(&quot;ConsoleApp1.PersonPublicCtor&quot;);        //要实例化的对象的类有命名空间的话需要加上  
+        Object person1Obj = Activator.CreateInstance(person1, 1, 2.0f, &quot;Hello&quot;); //最后一个参数是params objects[] args类型
+
+        //public string Show(int a, double b, string c)
+        MethodInfo methodShowA = person1.GetMethod(&quot;Show&quot;,                                      //methodName
+                                                   BindingFlags.Public | BindingFlags.Instance, //bindingAttr
+                                                   null,                                        //binder
+                                                   new Type[] {
+                                                       typeof(int), typeof(double), typeof(string)
+                                                   } ,  //type 
+                                                   null //modifiers
+                                                  );
+        //public object Invoke(object obj, object[] parameters)  
+        //Invoke返回值为object类型，即函数的返回值, 需要强转为需要的类型,ToString()就是转换为string类型  
+        Console.WriteLine(methodShowA.Invoke(person1Obj, new object[] {1, 2.0f, &quot;string&quot;}).ToString());
+
+
+        //private int Show(double b, int a, string c)
+        MethodInfo methodShowB = person1.GetMethod(&quot;Show&quot;, BindingFlags.NonPublic | BindingFlags.Instance, null,
+                                                   new Type[] {typeof(double), typeof(int), typeof(string)}, null);
+        Console.WriteLine(methodShowB.Invoke(person1Obj, new object[] {1.0f, 2, &quot;string&quot;}).ToString());
+
+
+        //public static int Show(string a, int b, string c)
+        MethodInfo methodShowC = person1.GetMethod(&quot;Show&quot;, BindingFlags.Public | BindingFlags.Static, null,
+                                                   new Type[] {
+                                                       typeof(string), typeof(int), typeof(string)
+                                                   }, null
+                                                  );
+        Console.WriteLine(methodShowC.Invoke(null, new object[] {&quot;strA&quot;, 1, &quot;strC&quot;}).ToString());
+
+        //private static int Show(int a, double b, int c) 
+        MethodInfo methodShowD = person1.GetMethod(&quot;Show&quot;, BindingFlags.NonPublic | BindingFlags.Static, null,
+                                                   new Type[] {
+                                                       typeof(int), typeof(double), typeof(int)
+                                                   }, null);
+        Console.WriteLine(methodShowD.Invoke(null, new object[] {1, 2.0f, 3}).ToString());
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+```
+<img alt="有参，有返回值，有重载的方法" src="https://i.loli.net/2019/04/22/5cbd61c875ded.jpg" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1269 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="bcaso">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>ADO.NET - MyNoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.b8ac9624.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.28f3ef9a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="MyNoteBook" class="md-header-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MyNoteBook
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              ADO.NET
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MyNoteBook" class="md-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    MyNoteBook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Programming
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Programming" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Programming
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      Pointer
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pointer" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pointer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E6%98%AFconst.%E4%B8%8E%E6%89%80%E6%8C%87%E6%98%AFconst/" title="指针是const.与所指是const.md" class="md-nav__link">
+      指针是const.与所指是const.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97/" title="指针运算.md" class="md-nav__link">
+      指针运算.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E7%94%A8%E6%95%B0%E7%BB%84%E4%BD%9C%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" title="用数组作函数参数.md" class="md-nav__link">
+      用数组作函数参数.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      CSharp
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="CSharp" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        CSharp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1">
+    
+    <label class="md-nav__link" for="nav-2-2-1">
+      Design pattern
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Design pattern" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Design pattern
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Design%20pattern/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态模式.md" class="md-nav__link">
+      状态模式.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      HTML
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="HTML" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        HTML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E5%B7%A6%E5%8F%B3%E4%B8%A4%E6%A1%86%E6%9E%B6%E4%B9%8B%E5%B7%A6%E8%BE%B9%E7%9B%AE%E5%BD%95left.html" title="左右两框架之左边目录left" class="md-nav__link">
+      左右两框架之左边目录left
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%B5%8B%E8%AF%95/" title="表格的测试" class="md-nav__link">
+      表格的测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%B6%85%E9%93%BE%E6%8E%A5%E9%94%9A%E7%82%B9%E7%9A%84%E6%B5%8B%E8%AF%95/" title="超链接锚点的测试" class="md-nav__link">
+      超链接锚点的测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      bat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="bat" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        bat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bat/2019.02.21/" title="控制台命令" class="md-nav__link">
+      控制台命令
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Android" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="ADB常用命令" class="md-nav__link">
+      ADB常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/MIUI9%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80/" title="修改mac地址(无效)" class="md-nav__link">
+      修改mac地址(无效)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/root%E5%90%8E%E8%A6%81%E8%A3%85%E7%9A%84%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6/" title="root后要装的手机软件" class="md-nav__link">
+      root后要装的手机软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E4%BD%BF%E7%94%A8ADB%E5%91%BD%E4%BB%A4%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/" title="使用ADB命令在手机与电脑间互传文件" class="md-nav__link">
+      使用ADB命令在手机与电脑间互传文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E6%89%8B%E6%9C%BA%E5%88%B7%E5%85%A5TWRP%20Recovery/" title="手机刷入TWRP Recovery" class="md-nav__link">
+      手机刷入TWRP Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E8%AE%BE%E7%BD%AE%E6%89%8B%E6%9C%BA%E5%88%86%E8%BE%A8%E7%8E%87/" title="设置手机分辨率" class="md-nav__link">
+      设置手机分辨率
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Au
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Au" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Au
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/AU/about_Au/" title="about_Au" class="md-nav__link">
+      about_Au
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Pr
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pr" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pr
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/PR/%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E4%B8%94%E4%B8%8D%E6%94%B9%E5%8F%98%E5%A3%B0%E8%B0%83/" title="加速视频且不改变声调" class="md-nav__link">
+      加速视频且不改变声调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Windows_Terminal
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Windows_Terminal" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Windows_Terminal
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Windows_Terminal/WSL%E4%BD%BF%E7%94%A8/" title="WSL使用" class="md-nav__link">
+      WSL使用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Git
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Git/git_command/" title="Git command usage" class="md-nav__link">
+      Git command usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      English
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="English" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        English
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%86%99%E4%BD%9C%E9%AB%98%E7%BA%A7%E7%9F%AD%E5%8F%A5/" title="写作高级短句" class="md-nav__link">
+      写作高级短句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%90%AC%E5%8A%9B%E6%8A%80%E5%B7%A7%E8%AF%BE%20%E6%AC%A7%E9%98%B3%E8%90%8D/" title="听力技巧课(欧阳萍)" class="md-nav__link">
+      听力技巧课(欧阳萍)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E4%B8%87%E8%83%BD%E7%A5%9E%E5%8F%A5/" title="英语" class="md-nav__link">
+      英语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E9%9F%B3%E6%A0%87%E5%90%AC%E5%8A%9B%E8%AF%8D%E5%8F%A5/" title="音标听力词句" class="md-nav__link">
+      音标听力词句
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Excel
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Excel" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Excel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Excel/anki%E5%88%B6%E5%8D%A1%EF%BC%88%E9%94%99%E4%BD%8D%E5%A4%8D%E5%88%B6%EF%BC%89/" title="anki制卡技巧" class="md-nav__link">
+      anki制卡技巧
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="_1">开发中要了解的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>SqlHelper + App.config </p>
+<blockquote>
+<p>SQLHelper类方法介绍及简单使用
+<a href="https://blog.csdn.net/u013201439/article/details/51591324">https://blog.csdn.net/u013201439/article/details/51591324</a>
+<a href="https://www.cnblogs.com/heisehenbai/p/6852748.html">https://www.cnblogs.com/heisehenbai/p/6852748.html</a></p>
+</blockquote>
+<p>基础知识（连接及操作数据库）：<a href="https://zhuanlan.zhihu.com/p/68905542#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C">https://zhuanlan.zhihu.com/p/68905542#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C</a></p>
+<h1 id="_2">连接字符串<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<h2 id="mysqlmssql">MYSQL与MSSQL的两种格式<a class="headerlink" href="#mysqlmssql" title="Permanent link">&para;</a></h2>
+<p>```csharp?linenums
+            //Connect 2 mssql
+            using (SqlConnection sqlConnection = new SqlConnection()) {
+                Console.Clear();
+                Console.WriteLine("Please input the password 4 mssql:");
+                string pwd = Console.ReadLine();
+                sqlConnection.ConnectionString = "Data Source=127.0.0.1;Initial Catalog=master;User ID=sa;Password=" + pwd; 
+                sqlConnection.Open();
+                Console.WriteLine("mssql connected successful");
+                Thread.Sleep(2000);
+                Console.WriteLine("mssql disconnected");
+            }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>        Thread.Sleep(2000);
+
+        //Connect 2 mysql 
+        using (MySqlConnection mySqlConnection = new MySqlConnection()) {
+            Console.Clear();
+            Console.WriteLine(&quot;Please input the password 4 mysql:&quot;);
+            string pwd = Console.ReadLine();
+            mySqlConnection.ConnectionString = &quot;Data Source = 127.0.0.1;Initial Catalog =sys;User ID =root;Password = &quot; + pwd;
+            mySqlConnection.Open();
+            Console.WriteLine(&quot;mysql connected successful&quot;);
+            Thread.Sleep(2000);
+            Console.WriteLine(&quot;mysql disconnected&quot;);
+        }
+
+        //区别在于mysql 没有 master数据库，默认的是sys；mysql也没有sa用户，默认的是root
+    }
+</code></pre></div>
+</td></tr></table>
+
+<p>```</p>
+<h2 id="appconfigsql">使用App.Config配置SQL连接的两种方式<a class="headerlink" href="#appconfigsql" title="Permanent link">&para;</a></h2>
+<h3 id="_3">第一种简单方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>MainFrm.cs
+<code>c#
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace SqlDataAdapter适配器 {
+    public partial class MainFrm : Form {
+        public MainFrm() {
+            InitializeComponent();
+        }
+
+        private void MainFrm_Load(object sender, EventArgs e) {
+            //把UserInfo表中的数据加载到窗体的DataGridView
+            using (SqlConnection sqlConnection = new SqlConnection()) {
+//              sqlConnection.DataSource = "127.0.0.1"; //属性都是只读的，不能直接赋值
+                string dataSource     = ConfigurationManager.AppSettings["DataSource"];
+                string initialCatalog = ConfigurationManager.AppSettings["InitialCatalog"];
+                string userID         = ConfigurationManager.AppSettings["UserID"];
+                string password       = ConfigurationManager.AppSettings["Password"]; //测试时密码需要修改
+                sqlConnection.ConnectionString = $"Data Source = {dataSource}; Initial Catalog = {initialCatalog}; User ID = {userID}; Password = {password};";
+
+                sqlConnection.Open();
+
+                MessageBox.Show("MSSQL Connected successful");
+            }
+        }
+    }
+}</code>
+AppConfig.xml
+<code>xml
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;configuration&gt;
+    &lt;!--
+    写法介绍
+     https://gameinstitute.qq.com/community/detail/126519      
+     appSettings似乎也是固定的。。。。
+    --&gt;
+    &lt;appSettings&gt;
+        &lt;add key="DataSource" value="127.0.0.1"&gt;&lt;/add&gt;
+        &lt;add key="InitialCatalog" value="master"&gt;&lt;/add&gt;
+        &lt;add key="UserID" value="sa"&gt;&lt;/add&gt;        
+        &lt;add key="Password" value="123456"&gt;&lt;/add&gt;
+    &lt;/appSettings&gt;
+
+    &lt;startup&gt;
+        &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" /&gt;
+    &lt;/startup&gt;
+&lt;/configuration&gt;</code></p>
+<h3 id="_4">第二种方式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>MainFrm.cs
+<code>csharp
+...
+    //获取连接字符串
+    string connStr = ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+...</code>
+AppConfig.xml
+<code>xml
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;configuration&gt;
+    &lt;!--
+     这个connectionStrings似乎也是固定的，格式大概都是一样的，标准格式,最后密码那个字段的分号可以省略
+     这个没怎么看懂，来自sql与ado四天 
+    --&gt;
+    &lt;connectionStrings&gt;
+        &lt;add name="sql" connectionString="Data Source=127.0.0.1;Initial Catalog=master;User ID=sa;Password=123456;" /&gt;
+    &lt;/connectionStrings&gt;
+    &lt;startup&gt;
+        &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" /&gt;
+    &lt;/startup&gt;
+&lt;/configuration&gt;</code></p>
+<h3 id="appconfig">关于App.Config<a class="headerlink" href="#appconfig" title="Permanent link">&para;</a></h3>
+<p><code>xml
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;connectionStrings&gt;
+    &lt;add name="conn" connectionString="this is connection string"/&gt;
+  &lt;/connectionStrings&gt;
+  &lt;appSettings&gt;
+    &lt;add key="key1" value="value1" /&gt;
+    &lt;add key="key2" value="value2" /&gt;
+  &lt;/appSettings&gt;
+&lt;/configuration&gt;</code>
+从这段代码可以看出，App.config完全是xml文档。它有如下几个特点。
+1、它有一个<code>&lt;configuration&gt;</code>标签，所有的配置项都在<code>&lt;configuration&gt;</code>标签下面。
+2、C#内置了一个<code>&lt;connectionStrings&gt;</code>节点，专门用于配置数据库连接字符串。它下面可以使用<code>&lt;Add&gt;</code>节点来添加多个数据库连接字符串。
+3、<code>&lt;appSettings&gt;</code>，大家了解Web.config的应该很熟悉它，它可以配置任何<code>key-value</code>这样的键值对。最早没有<connectionStrings>的时候，我们也是把数据库连接的字符串放在<code>&lt;appSettings&gt;</code>里面的。</p>
+<p>从这段代码可以看出，App.config完全是xml文档。它有如下几个特点。
+1、它有一个<configuration>标签，所有的配置项都在<configuration>标签下面。
+2、C#内置了一个<connectionStrings>节点，专门用于配置数据库连接字符串。它下面可以使用<Add>节点来添加多个数据库连接字符串。
+3、<appSettings>，大家了解Web.config的应该很熟悉它，它可以配置任何key-value这样的键值对。最早没有<connectionStrings>的时候，我们也是把数据库连接的字符串放在<appSettings>里面的。</p>
+<p>下面我们写一个程序来看看怎么从App.config这个程序配置文件中获取配置信息。</p>
+<p>```c#?linenums
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Configuration;</p>
+<p>namespace AppConfig
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("ConnectionStrings:");
+            // ConfigurationManager.ConnectionStrings是一个ConnectionStringSettingsCollection对象
+            // 按数字循环得到一个个ConnectionStringSettings对象
+            // 每个ConnectionStringSettings对象有Name和ConnectionString属性
+            for (int i = 0; i &lt; ConfigurationManager.ConnectionStrings.Count; i++)
+            {
+                string name = ConfigurationManager.ConnectionStrings[i].Name;
+                string connectionString = ConfigurationManager.ConnectionStrings[i].ConnectionString;
+                Console.WriteLine(i.ToString() + ". " + name + " = " + connectionString);
+            }
+            //也可以如下操作，使用ConnectionStringSettings类型来进行foreach遍历
+            foreach (ConnectionStringSettings conn in ConfigurationManager.ConnectionStrings)
+            {
+                string name = conn.Name;
+                string connectionString = conn.ConnectionString;
+                Console.WriteLine(name + " = " + connectionString);
+            }
+            //直接获取conn的值
+            Console.WriteLine("\r\nGet the value of the node named \"conn\":");
+            Console.WriteLine(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
+            Console.WriteLine("");</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>        Console.WriteLine(&quot;AppSettings:&quot;);
+        //AppSettings是NameValueConnection类型，使用AllKeys返回一个所有Key组成的字符串数组
+        string[] keys = ConfigurationManager.AppSettings.AllKeys;
+        for (int i = 0; i &lt; keys.Length; i++)
+        {
+            string key = keys[i];
+            //通过Key来索引Value
+            string value = ConfigurationManager.AppSettings[key];
+            Console.WriteLine(i.ToString() + &quot;. &quot; + key + &quot; = &quot; + value);
+        }
+        // 没有NameValuePair这样的对象，所以无法使用foreach来进行循环
+
+        //直接获取key1的值
+        Console.WriteLine(&quot;\r\nGet the value of the key named \&quot;key1\&quot;:&quot;);
+        Console.WriteLine(ConfigurationManager.AppSettings[&quot;key1&quot;]);
+
+        //pause the process
+        Console.ReadKey();
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+<code>``
+上面演示了如何遍历</code><connectionStrings><code>，如何遍历</code><appSettings><code>，如何单独获取某一个</code>connectionString<code>，如何单独获取某个</code>appSetting`。
+
+App.config和Web.config的语法格式是完全一样的，只是一个用户WinForm程序，一个用于Web程序。
+
+App.config在编译之后，将会被编译到bin\Debug目录下，文件名为“应用程序名.exe.config”。
+
+</p>
+<blockquote>
+<p>C#中App.config文件的使用：<a href="http://www.splaybow.com/post/csharp-app-config.html">http://www.splaybow.com/post/csharp-app-config.html</a>
+使用操作包括修改保存 <a href="https://blog.csdn.net/e295166319/article/details/77839798">https://blog.csdn.net/e295166319/article/details/77839798</a>
+修改保存配置文件 <a href="https://blog.csdn.net/wzk456/article/details/49001391">https://blog.csdn.net/wzk456/article/details/49001391</a>
+</p>
+</blockquote>
+<h1 id="_5">连接池<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
+<p>默认最小是4个
+
+只要两个连接字符串不相当，那么在连接池中这就是两个连接。
+
+连接对象只可以被open()一次，在close()后可以再进行open()操作。但是Dispose()后这个连接就会被释放，之后就不能再被打开了。
+</p>
+<h1 id="sql">sql注入漏洞<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h1>
+<p>一般在登录的场景下：使用一些特殊的字符进行对数据库进行攻击
+' or 2 = 2; --
+
+解决方式：
+sql参数化：SqlParameter
+</p>
+<h2 id="dataset-datatable">DataSet 和 DataTable<a class="headerlink" href="#dataset-datatable" title="Permanent link">&para;</a></h2>
+<p>两个Csharp类
+DataSet 是表的集合
+DataTable 是列和行的集合
+
+<code>c#?linenums
+//把UserInfo表中的数据加载到窗体的DataGridView
+using (SqlConnection sqlConnection = new SqlConnection()) {
+    ...
+    //连接字符串
+    sqlConnection.ConnectionString = "Data Source = .; Initial Catalog = StudentDB; User ID = sa; Password = 123456;";              
+    //查询命令
+    string strSql = @"SELECT TOP (1000) [StuInfoID], [StuName],[StuAge] FROM [StudentDB].[dbo].[StudentInfo]";
+    //创建一个适配器类
+    using (SqlDataAdapter adapter = new SqlDataAdapter(selectCommandText: strSql, selectConnection: sqlConnection) ) {
+        //adapter: 一个连接，cmd.CommandText(Sql)
+        DataTable dataTable = new DataTable();
+        //把数据库中的数据填充到内存表dataTable中
+        //填充之前不需要打开数据库连接，Adapter会自动打开连接
+        adapter.Fill(dataTable);
+        //在DataGridView控件上显示结果
+        this.dgvUserInfo.DataSource = dataTable;
+    }
+}</code></p>
+<h2 id="sqldataadapter-sqldatareader">SqlDataAdapter数据访问适配器 与 SqlDataReader<a class="headerlink" href="#sqldataadapter-sqldatareader" title="Permanent link">&para;</a></h2>
+<p>SqlServer 表 → 适配表（SqlDataAdapter） → DataSet、DataTable
+建立连接后，SqlDataAdapter将所有数据加载到内存后，然后连接就关闭了</p>
+<p>而SqlDataReader，在建立连接后，一直保持连接状态，数据都在数据库中，只有用到哪个数据才会取哪个</p>
+<h2 id="_6">修改并保存<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>WinForm 下使用 DataGridView控件
+注意：
+&emsp;最好把从数据库读取的数据表，序列化为一个强类型的类，然后从DataGridView做修改，保存到类，类再update到数据库
+使用及操作案例：
+<a href="https://www.cnblogs.com/herbert/archive/2010/08/31/1813824.html">https://www.cnblogs.com/herbert/archive/2010/08/31/1813824.html</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

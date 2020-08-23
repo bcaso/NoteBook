@@ -1,0 +1,1289 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="bcaso">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>ref 和 out 关键字的区别 - MyNoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.b8ac9624.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.28f3ef9a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="MyNoteBook" class="md-header-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MyNoteBook
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              ref 和 out 关键字的区别
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MyNoteBook" class="md-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    MyNoteBook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Programming
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Programming" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Programming
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      Pointer
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pointer" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pointer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E6%98%AFconst.%E4%B8%8E%E6%89%80%E6%8C%87%E6%98%AFconst/" title="指针是const.与所指是const.md" class="md-nav__link">
+      指针是const.与所指是const.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97/" title="指针运算.md" class="md-nav__link">
+      指针运算.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../C/Pointer/%E7%94%A8%E6%95%B0%E7%BB%84%E4%BD%9C%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" title="用数组作函数参数.md" class="md-nav__link">
+      用数组作函数参数.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      CSharp
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="CSharp" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        CSharp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1">
+    
+    <label class="md-nav__link" for="nav-2-2-1">
+      Design pattern
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Design pattern" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Design pattern
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Design%20pattern/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态模式.md" class="md-nav__link">
+      状态模式.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      HTML
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="HTML" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        HTML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E5%B7%A6%E5%8F%B3%E4%B8%A4%E6%A1%86%E6%9E%B6%E4%B9%8B%E5%B7%A6%E8%BE%B9%E7%9B%AE%E5%BD%95left.html" title="左右两框架之左边目录left" class="md-nav__link">
+      左右两框架之左边目录left
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%B5%8B%E8%AF%95/" title="表格的测试" class="md-nav__link">
+      表格的测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%B6%85%E9%93%BE%E6%8E%A5%E9%94%9A%E7%82%B9%E7%9A%84%E6%B5%8B%E8%AF%95/" title="超链接锚点的测试" class="md-nav__link">
+      超链接锚点的测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      bat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="bat" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        bat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bat/2019.02.21/" title="控制台命令" class="md-nav__link">
+      控制台命令
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Android" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="ADB常用命令" class="md-nav__link">
+      ADB常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/MIUI9%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80/" title="修改mac地址(无效)" class="md-nav__link">
+      修改mac地址(无效)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/root%E5%90%8E%E8%A6%81%E8%A3%85%E7%9A%84%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6/" title="root后要装的手机软件" class="md-nav__link">
+      root后要装的手机软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E4%BD%BF%E7%94%A8ADB%E5%91%BD%E4%BB%A4%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/" title="使用ADB命令在手机与电脑间互传文件" class="md-nav__link">
+      使用ADB命令在手机与电脑间互传文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E6%89%8B%E6%9C%BA%E5%88%B7%E5%85%A5TWRP%20Recovery/" title="手机刷入TWRP Recovery" class="md-nav__link">
+      手机刷入TWRP Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E8%AE%BE%E7%BD%AE%E6%89%8B%E6%9C%BA%E5%88%86%E8%BE%A8%E7%8E%87/" title="设置手机分辨率" class="md-nav__link">
+      设置手机分辨率
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Au
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Au" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Au
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/AU/about_Au/" title="about_Au" class="md-nav__link">
+      about_Au
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Pr
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pr" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pr
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/PR/%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E4%B8%94%E4%B8%8D%E6%94%B9%E5%8F%98%E5%A3%B0%E8%B0%83/" title="加速视频且不改变声调" class="md-nav__link">
+      加速视频且不改变声调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Windows_Terminal
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Windows_Terminal" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Windows_Terminal
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Windows_Terminal/WSL%E4%BD%BF%E7%94%A8/" title="WSL使用" class="md-nav__link">
+      WSL使用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Git
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Git/git_command/" title="Git command usage" class="md-nav__link">
+      Git command usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      English
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="English" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        English
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%86%99%E4%BD%9C%E9%AB%98%E7%BA%A7%E7%9F%AD%E5%8F%A5/" title="写作高级短句" class="md-nav__link">
+      写作高级短句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%90%AC%E5%8A%9B%E6%8A%80%E5%B7%A7%E8%AF%BE%20%E6%AC%A7%E9%98%B3%E8%90%8D/" title="听力技巧课(欧阳萍)" class="md-nav__link">
+      听力技巧课(欧阳萍)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E4%B8%87%E8%83%BD%E7%A5%9E%E5%8F%A5/" title="英语" class="md-nav__link">
+      英语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E9%9F%B3%E6%A0%87%E5%90%AC%E5%8A%9B%E8%AF%8D%E5%8F%A5/" title="音标听力词句" class="md-nav__link">
+      音标听力词句
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Excel
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Excel" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Excel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Excel/anki%E5%88%B6%E5%8D%A1%EF%BC%88%E9%94%99%E4%BD%8D%E5%A4%8D%E5%88%B6%EF%BC%89/" title="anki制卡技巧" class="md-nav__link">
+      anki制卡技巧
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>在C#中，ref与out是很特殊的两个关键字。使用它们，可以使**参数按照引用来传递**.
+<br>
+传递的不只是一个值，而是原来的变量, 变量的引用传递。变量更改，这个变量的值也会更改。
+<br>
+通常我们向方法中**传递的是值**.方法获得的是这些值的一个拷贝,然后使用这些拷贝,当方法运行完毕后,这些拷贝将被丢弃,而原来的值不将受到影响.
+<br>
+此外我们还有其他向方法**传递参数**的形式,引用(ref)和输出(out).</p>
+<blockquote>
+<p>paramsparams修饰的参数，可以传一个数组，参数修饰的数组相当于长度可变的参数数组。它是修饰参数（一维数组）的一个关键字。用处就是在不知道参数个数或参数个数有可能发生变化的情况下使用。具体使用请再Google.</p>
+</blockquote>
+<p>```csharp?linenums
+using System;
+namespace Program {
+    class MyClass {
+        static void Main(string[] args) {
+            TestRefAndOut();    //output: Hello World!
+            Console.ReadKey();
+        }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    //output: Hello World!
+    static void TestRefAndOut() {
+        string s1 = &quot;Good Luck!&quot;;
+        TestRef(ref s1);
+        Console.WriteLine(s1);//output: Hello World!
+    }
+    static void TestRef(ref string str) {
+        str = &quot;Hello World!&quot;;
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+<code>``
+如果将上面代码中的</code>TestRef<code>方法中的参数改为</code>(out string str)`在将ref换成out后，会发现最后的输出仍然是相同的.
+</p>
+<blockquote>
+<p>在使用两个关键字时，调用方法时用的修饰符(ref || out) 要跟定义这个方法时的修饰符(ref || out)保持一致</p>
+<p>代码如下：
+```csharp?linenums
+using System;
+namespace Program {
+    class MyClass {
+        static void Main(string[] args) {
+            TestRefAndOut();
+            Console.ReadKey();
+        }</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    static void TestRefAndOut() {
+        string s1 = &quot;Good Luck!&quot;;
+        TestRef(out s1);
+        Console.WriteLine(s1);//output: Hello World!
+    }
+    static void TestRef(out string str) {
+        str = &quot;Hello World!&quot;;
+    }
+}
+</code></pre></div>
+</td></tr></table>
+
+<p>}
+```</p>
+</blockquote>
+<h1 id="_2">那这两个关键字的区别是什么呢？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>进一步测试：
+<code>ref</code>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="k">void</span> <span class="nf">TestRefAndOut</span><span class="p">(){</span>
+    <span class="kt">string</span> <span class="n">s1</span> <span class="p">=</span> <span class="s">&quot;Good Luck!&quot;</span><span class="p">;</span>
+    <span class="n">TestRef</span><span class="p">(</span><span class="k">ref</span> <span class="n">s1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestRef</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="c1">//output: Good Luck!            </span>
+<span class="p">}</span>
+</code></pre></div>
+<code>out</code>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="k">void</span> <span class="nf">TestRefAndOut</span><span class="p">(){</span>
+    <span class="kt">string</span> <span class="n">s1</span> <span class="p">=</span> <span class="s">&quot;Good Luck!&quot;</span><span class="p">;</span>
+    <span class="n">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="n">s1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="kt">string</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="c1">//compile does not pass</span>
+<span class="p">}</span>
+</code></pre></div>
+<strong>ref**的那段代码顺利编译，输出"Good Luck!"，而**out**那段代码却无法通过编译，提示<code>Use of unassigned out parameter 'str'</code>,即使用了未分配地址的out参数str。怎么回事呢？
+<br>
+原来**out参数在进入方法的时候，C#会自动清空它的一切引用和指向</strong>，所以在上面的out例子中，<strong>必需先要为 str 参数赋值</strong>。如以下程序。
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="k">void</span> <span class="nf">TestRefAndOut</span><span class="p">(){</span>
+    <span class="kt">string</span> <span class="n">s1</span> <span class="p">=</span> <span class="s">&quot;Good Luck!&quot;</span><span class="p">;</span>
+    <span class="n">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="n">s1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="kt">string</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">str</span> <span class="p">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="c1">//output: Hello World!</span>
+<span class="p">}</span>
+</code></pre></div>
+Ok，得到第一个区别： <font size = 5>out 参数在进入方法（函数）时后清空自己，使自己变成一个干净的参数，也因为这个原因必须在方法内部的"方法返回"之前为 out指向的参数赋值（<strong>只有地址没有值的参数是不能被.net接受的</strong>）；
+而ref参数是不需要在被调用方法中赋值的,甚至也可以被调用方法中不改变ref参数的值，这都不会引起编译错误。</font></p>
+<p><br></p>
+<p>在继续看一段代码：
+<div class="highlight"><pre><span></span><code><span class="c1">// ref:</span>
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestRef</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">str</span> <span class="p">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestRefAndOut</span><span class="p">(){</span>
+    <span class="kt">string</span> <span class="n">s1</span><span class="p">;</span>
+    <span class="n">TestRef</span><span class="p">(</span><span class="k">ref</span> <span class="n">s1</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span><span class="c1">//compile does not pass!</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// out：</span>
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="kt">string</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">str</span> <span class="p">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="p">}</span> 
+<span class="k">static</span> <span class="k">void</span> <span class="nf">TestRefAndOut</span><span class="p">(){</span>
+    <span class="kt">string</span> <span class="n">s1</span><span class="p">;</span>
+    <span class="n">TestOut</span><span class="p">(</span><span class="k">out</span> <span class="n">s1</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span><span class="c1">//output: Hello World!</span>
+<span class="p">}</span>
+</code></pre></div>
+这回发现，ref这段代码无法编译了，s1是一个空引用，所以无法使用。而out参数则因为上述的那个原因，它不在乎s1是不是空引用，因为就算s1不是空引用，它也会把s1变成空引用的。</p>
+<p>Ok，第二个区别：<strong>ref参数在使用前必需初始化，而out不需要。（out必须在新的方法内部为out指向的参数赋值）</strong></p>
+<h1 id="_3">区别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<p>ref和out区别:
+* 使用ref的时候必须要先赋值，否则编译错误，而out并不需要。
+* 对应的，在实现的方法中，out必须赋值，而ref不强求。
+    * 在用法上概括一下就是：out适合用在需要retrun多个返回值的地方，而ref则用在需要被调用的方法修改调用者的引用的时候。</p>
+<h1 id="unity">unity中的特殊情况<a class="headerlink" href="#unity" title="Permanent link">&para;</a></h1>
+<p>unity中的很多函数中的out修饰符在使用时后面的变量都没有指定类型，具体原因，待研究
+如下面代码中的<code>out hit</code>就没没有指定hit是什么类型的参数。</p>
+<p><img alt="鼠标射线" src="https://i.loli.net/2018/10/17/5bc70a68a11dc.png" />
+代码：
+```csharp?linenums
+void update(){
+    if(Input.GetMouseButtonDown(0)){
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit)){
+            //hit.point,打印鼠标点击的位置
+            print(hit.point);
+        }
+    }
+}
+<div class="highlight"><pre><span></span><code>&lt;br&gt;
+
+# 试编写一程序，要求输出数组中最大值，同时打印这个最大值的索引
+答案在最后 ↓
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+// 复制粘贴到编辑器中试下吧？
+这段代码同样可以改为ref，修改方式同例2
+```csharp
+using System;
+namespace Program {
+    class MyClass {
+        static void Main(string[] args) {
+            int[] array = new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 20, 20, 18 };
+            int maxIndex;
+            Console.WriteLine(&quot;The maxium value in array is {0}&quot;, GetMax(array, out maxIndex));
+            // 输出这个最大值第一次出现的位置(可能有多个最大值), 同时因为这个maxIndex是从0开始的所以要加1
+            Console.WriteLine(&quot;The first occurrence of this value is at element {0}&quot;, maxIndex + 1);
+
+            Console.ReadKey();
+        }
+        /// &lt;summary&gt;
+        /// 计算一个数组的最大值，并返回这个值，同时改变最大值索引
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;array&quot;&gt;传入要计算的数组&lt;/param&gt;
+        /// &lt;param name=&quot;maxIndex&quot;&gt;传入一个表示最大值索引的int型变量，这个值是引用类型&lt;/param&gt;
+        /// &lt;returns&gt;返回传入的数组中的最大值&lt;/returns&gt;
+        static int GetMax(int[] array, out int maxIndex) {
+            maxIndex = 0;
+            int max = 0;
+            for (int i = 0; i &lt; array.Length; i++) {
+                if (array[i] &gt; max) {
+                    max = array[i];
+                    maxIndex = i;
+                }
+            }
+            return max;             // 返回最大值，同时在方法执行时 改变 maxIndex
+        }
+    }
+}
+</code></pre></div></p>
+<h2 id="2">例2：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">Program</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>       
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kt">string</span> <span class="n">text</span><span class="p">;</span>
+            <span class="n">MyClass</span> <span class="n">myClass</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">();</span>
+            <span class="n">myClass</span><span class="p">.</span><span class="n">ChangeText</span><span class="p">(</span><span class="k">out</span> <span class="n">text</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;last text output in loop: {0}&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">void</span> <span class="nf">ChangeText</span><span class="p">(</span><span class="k">out</span> <span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">text</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">10</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span> <span class="p">{</span>
+                <span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Line &quot;</span> <span class="p">+</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;{0}&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+例2改为ref
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">Program</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>       
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kt">string</span> <span class="n">text</span> <span class="p">=</span> <span class="n">String</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+            <span class="n">MyClass</span> <span class="n">myClass</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">();</span>
+            <span class="n">myClass</span><span class="p">.</span><span class="n">ChangeText</span><span class="p">(</span><span class="k">ref</span> <span class="n">text</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;last text output in loop: {0}&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">void</span> <span class="nf">ChangeText</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//text = String.Empty;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">10</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span> <span class="p">{</span>
+                <span class="n">text</span> <span class="p">=</span> <span class="s">&quot;Line &quot;</span> <span class="p">+</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;{0}&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

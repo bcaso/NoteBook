@@ -1,0 +1,1139 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="bcaso">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>getch(),getche(),getchar()的区别 （综合转） - MyNoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.b8ac9624.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.28f3ef9a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-getchgetche" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="MyNoteBook" class="md-header-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            MyNoteBook
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              getch(),getche(),getchar()的区别 （综合转）
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MyNoteBook" class="md-nav__button md-logo" aria-label="MyNoteBook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    MyNoteBook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Programming
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Programming" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Programming
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      Pointer
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pointer" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pointer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Pointer/%E6%8C%87%E9%92%88%E6%98%AFconst.%E4%B8%8E%E6%89%80%E6%8C%87%E6%98%AFconst/" title="指针是const.与所指是const.md" class="md-nav__link">
+      指针是const.与所指是const.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Pointer/%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97/" title="指针运算.md" class="md-nav__link">
+      指针运算.md
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Pointer/%E7%94%A8%E6%95%B0%E7%BB%84%E4%BD%9C%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" title="用数组作函数参数.md" class="md-nav__link">
+      用数组作函数参数.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      CSharp
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="CSharp" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        CSharp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2-1" type="checkbox" id="nav-2-2-1">
+    
+    <label class="md-nav__link" for="nav-2-2-1">
+      Design pattern
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Design pattern" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Design pattern
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CSharp/Design%20pattern/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态模式.md" class="md-nav__link">
+      状态模式.md
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      HTML
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="HTML" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        HTML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E5%B7%A6%E5%8F%B3%E4%B8%A4%E6%A1%86%E6%9E%B6%E4%B9%8B%E5%B7%A6%E8%BE%B9%E7%9B%AE%E5%BD%95left.html" title="左右两框架之左边目录left" class="md-nav__link">
+      左右两框架之左边目录left
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%B5%8B%E8%AF%95/" title="表格的测试" class="md-nav__link">
+      表格的测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Html/%E8%B6%85%E9%93%BE%E6%8E%A5%E9%94%9A%E7%82%B9%E7%9A%84%E6%B5%8B%E8%AF%95/" title="超链接锚点的测试" class="md-nav__link">
+      超链接锚点的测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      bat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="bat" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        bat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bat/2019.02.21/" title="控制台命令" class="md-nav__link">
+      控制台命令
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Android" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="ADB常用命令" class="md-nav__link">
+      ADB常用命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/MIUI9%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80/" title="修改mac地址(无效)" class="md-nav__link">
+      修改mac地址(无效)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/root%E5%90%8E%E8%A6%81%E8%A3%85%E7%9A%84%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6/" title="root后要装的手机软件" class="md-nav__link">
+      root后要装的手机软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E4%BD%BF%E7%94%A8ADB%E5%91%BD%E4%BB%A4%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E9%97%B4%E4%BA%92%E4%BC%A0%E6%96%87%E4%BB%B6/" title="使用ADB命令在手机与电脑间互传文件" class="md-nav__link">
+      使用ADB命令在手机与电脑间互传文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E6%89%8B%E6%9C%BA%E5%88%B7%E5%85%A5TWRP%20Recovery/" title="手机刷入TWRP Recovery" class="md-nav__link">
+      手机刷入TWRP Recovery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Android/%E8%AE%BE%E7%BD%AE%E6%89%8B%E6%9C%BA%E5%88%86%E8%BE%A8%E7%8E%87/" title="设置手机分辨率" class="md-nav__link">
+      设置手机分辨率
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Au
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Au" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Au
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/AU/about_Au/" title="about_Au" class="md-nav__link">
+      about_Au
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Pr
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Pr" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Pr
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/PR/%E5%8A%A0%E9%80%9F%E8%A7%86%E9%A2%91%E4%B8%94%E4%B8%8D%E6%94%B9%E5%8F%98%E5%A3%B0%E8%B0%83/" title="加速视频且不改变声调" class="md-nav__link">
+      加速视频且不改变声调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Windows_Terminal
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Windows_Terminal" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Windows_Terminal
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Windows_Terminal/WSL%E4%BD%BF%E7%94%A8/" title="WSL使用" class="md-nav__link">
+      WSL使用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Git
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Tools/Git/git_command/" title="Git command usage" class="md-nav__link">
+      Git command usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      English
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="English" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        English
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%86%99%E4%BD%9C%E9%AB%98%E7%BA%A7%E7%9F%AD%E5%8F%A5/" title="写作高级短句" class="md-nav__link">
+      写作高级短句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E5%90%AC%E5%8A%9B%E6%8A%80%E5%B7%A7%E8%AF%BE%20%E6%AC%A7%E9%98%B3%E8%90%8D/" title="听力技巧课(欧阳萍)" class="md-nav__link">
+      听力技巧课(欧阳萍)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E4%B8%87%E8%83%BD%E7%A5%9E%E5%8F%A5/" title="英语" class="md-nav__link">
+      英语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../English/%E9%9F%B3%E6%A0%87%E5%90%AC%E5%8A%9B%E8%AF%8D%E5%8F%A5/" title="音标听力词句" class="md-nav__link">
+      音标听力词句
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Excel
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Excel" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Excel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Excel/anki%E5%88%B6%E5%8D%A1%EF%BC%88%E9%94%99%E4%BD%8D%E5%A4%8D%E5%88%B6%EF%BC%89/" title="anki制卡技巧" class="md-nav__link">
+      anki制卡技巧
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <p>[toc]</p>
+<h1 id="1-getchgetche">(1) getch()和getche()函数<a class="headerlink" href="#1-getchgetche" title="Permanent link">&para;</a></h1>
+<p>这两个函数都是从键盘上读入一个字符。其调用格式为:
+<div class="highlight"><pre><span></span><code><span class="err">头文件：</span><span class="n">conio</span><span class="p">.</span><span class="n">h</span>
+<span class="n">getch</span><span class="p">();</span> <span class="c1">//从控制台读取一个字符，但不显示在屏幕上</span>
+    <span class="err">在</span><span class="n">VS2017中使用这个函数在不引用头文件</span> <span class="n">conio</span><span class="p">.</span><span class="n">h的情况下</span><span class="err">，正常。在引用了这个头文件的情况下使用这个函数，会报错。</span>
+    <span class="n">Severity</span>    <span class="n">Code</span>    <span class="n">Description</span> <span class="n">Project</span> <span class="n">File</span>    <span class="n">Line</span>    <span class="n">Suppression</span> <span class="n">State</span>
+<span class="n">Error</span>   <span class="n">C4996</span>   <span class="err">&#39;</span><span class="n">getch</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">The</span> <span class="n">POSIX</span> <span class="n">name</span> <span class="k">for</span> <span class="n">this</span> <span class="n">item</span> <span class="n">is</span> <span class="n">deprecated</span><span class="p">.</span> <span class="n">Instead</span><span class="p">,</span> <span class="n">use</span> <span class="n">the</span> <span class="n">ISO</span> <span class="n">C</span> <span class="n">and</span> <span class="n">C</span><span class="o">++</span> <span class="n">conformant</span> <span class="nl">name</span><span class="p">:</span> <span class="n">_getch</span><span class="p">.</span> <span class="n">See</span> <span class="n">online</span> <span class="n">help</span> <span class="k">for</span> <span class="n">details</span><span class="p">.</span>
+    <span class="err">意思大概是说</span><span class="n">getch</span><span class="p">()</span><span class="err">函数已被弃用，使用</span><span class="n">_getch</span><span class="p">()</span><span class="err">代替。</span>
+
+<span class="n">getche</span><span class="p">();</span> <span class="c1">//从控制台取字符(带回显)</span>
+</code></pre></div></p>
+<p>例1:
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="n">main</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="n">ch</span><span class="p">;</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">getch</span><span class="p">();</span>      <span class="cm">/*从键盘上读入一个字符不回显送给字符变量c*/</span> 
+    <span class="n">putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>     <span class="cm">/*输出该字符*/</span>
+    <span class="n">ch</span><span class="o">=</span><span class="n">getche</span><span class="p">();</span>    <span class="cm">/*从键盘上带回显的读入一个字符送给字符变量ch*/</span>
+    <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+利用回显和不回显的特点, 这两个函数经常用于交互输入的过程中完 <strong>暂停</strong> 等功能。
+例2:
+<code>Press any key to continue</code>的实现方式 ↓
+```c?linenums</p>
+<h1 id="include">include<stdio.h><a class="headerlink" href="#include" title="Permanent link">&para;</a></h1>
+<p>main(){
+    printf("Press any key to continue...");
+    getch();    /<em>等待输入任一键</em>/ 
+} 
+<div class="highlight"><pre><span></span><code># (2) getchar()函数
+&amp;emsp;&amp;ensp;getchar()函数也是从键盘上读入一个字符,并带回显。它与前面两个函数 的区别在于: getchar()函数等待输入直到按回车才结束, 回车前的所有输入字 符都会逐个显示在屏幕上。但只有第一个字符作为函数的返回值。 
+　getchar()函数的调用格式为:
+</code></pre></div>
+　getchar();
+<div class="highlight"><pre><span></span><code>例3:
+```c?linenums
+#include &lt;stdio.h&gt;
+main(){
+    char c;
+    c=getchar();     /*从键盘读入字符直到回车结束*/ 
+    putchar(c);      /*显示输入的第一个字符*/
+    printf(&quot;Press any key to continue...&quot;);
+    getch();        /*等待按任一健*/ 
+}
+</code></pre></div></p>
+<p>例4
+```c?linenums</p>
+<h1 id="include_1">include<stdio.h><a class="headerlink" href="#include_1" title="Permanent link">&para;</a></h1>
+<p>main(){
+    char c;
+    while ((c=getchar())!='/n')   /<em>每个getchar()依次读入一个字符</em>/
+    printf("%c",c);           /<em>按照原样输出</em>/ 
+    printf("Press any key to continue...")
+    getch();                /<em>等待按任一健</em>/ 
+}
+<div class="highlight"><pre><span></span><code>再说下文件尾部getch();的原因。 
+
+&amp;emsp;&amp;emsp;首先不要忘了，要用`getch()`必须引入头文件`conio.h`，以前学C语言的时候，我们总喜欢用在程序的末尾加上它，利用它来实现程序运行完了暂停不退出的效果。如果不加这句话，在TC2.0的环境中我们用Ctrl+F9编译并运行后，程序一运行完了就退回到TC环境中，我们根本来不及看到结果，这时要看结果，我们就要按Alt+F5回到DOS环境中去看结果，这很麻烦。而如果在程序的结尾加上一行`getch();`语句，我们就可以省掉会DOS看结果这个步骤，因为程序运行完了并不退出，而是在程序最后把屏幕停住了，按任意键才退回到TC环境中去。那我们来看看`getch()`到底起的什么作用，`getch()`实际是一个输入命令，就像我们用`cin&gt;&gt;`的时候程序会停下来等你输入，和`cin`不同的是，`getch()`的作用是从键盘接收一个字符，而且并不把这个字符显示出来，就是说，你按了一个键后它并不在屏幕上显示你按的什么，而继续运行后面的代码，所以我们在C++ 中可以用它来实现“按任意键继续”的效果，即程序中遇到`getch();`这行语句，它就会把程序暂停下来，等你按任意键，它接收了这个字符键后再继续执行后面的代码。
+ &amp;emsp;&amp;emsp; 你也许会问，为什么我们在 C++ 中就没有在程序的末尾加上`getch()`。解释是，软件总是不段更新的，不好的地方当然需要改正，`getch()`加在程序末尾，它又不赋值给任何变量，所以它在这个地方完全是垃圾代码，与程序无关。C++ 中考虑到这一点，于是在每次程序运行完了并不退出，而是自动把屏幕停下来，并显示“press any key...”叫你按任意键退出，这就好比C++ 在它的环境中运行程序，在程序的末尾自动加上了一行`getch();`语句，并且在这行语句前还添加了一行输出语句`cout&lt;&lt;&quot;press any key...&quot;;`来提示你程序结束了，按任意键继续。
+&amp;emsp;&amp;emsp;实际上我们编译好的程序在程序结束了本身是不会停下来的，我们可以在编译产生的Debug目录中找到这个编译好的应用程序（扩展名exe），在文件夹中双击运行它，你会发现屏幕闪了一下MS-DOS窗口就关闭了，因为程序运行完就自动退出了，回到了windows环境，当然，如果我们在DOS环境中运行这个程序，我们就可以直接在看到DOS屏幕上看到程序运行结果，因为程序运行完后并不清屏。　　
+&amp;emsp;&amp;emsp;还有一个语句，和`getch()`很相似，`getche()`，它也需要引入头文件`conio.h`，那它们之间的区别又在哪里呢？不同之处就在于`getch()`无返回显示，`getche()`有返回显示。怎么说呢？我举个例子你就明白了。
+
+```c?linenums
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+int main(void){
+    char ch;
+    for(int i=0;i&lt;5;i++){
+        ch=getch();
+        printf(&quot;%c&quot;,ch);
+    }
+    return 0;
+}
+</code></pre></div>
+&emsp;&emsp;这里输入输出我用的是C的函数库，没有用C++ 的<code>iostream.h</code>，这个我等会再说。首先这是个连续5次的循环来实现5次停顿，等待我们输入，我们编译并运行这个程序，假设我们分别输入<code>abcde</code>，屏幕上显示的结果是<code>abcde</code>，这个abcde并不是在<code>ch=getch();</code>中输出的，我们把<code>printf("%c",ch);</code>这行语句去掉，就会发现我们按5次任意键程序就结束了，但屏幕上什么都没有显示。
+&emsp;&emsp;然后我们在把代码中的<code>getch()</code>换成<code>getche()</code>看看有什么不同，我们还是分别输入<code>abcde</code>，这时屏幕上显示的结果是<code>aabbccddee</code>，我们把<code>printf("%c",ch);</code>这行语句再去掉看看，显示的结果就是<code>abcde</code>了，说明程序在执行<code>ch=getche();</code>这条语句的时候就把我们输入的键返回显示在屏幕上，有无回显就是它们的唯一区别。
+ 好了，我们再来说说为什么不用C++ 函数库的原因。你可以试试把这个程序改成C++ 的形式：
+```c?linenums</p>
+<h1 id="include_2">include<iostream.h><a class="headerlink" href="#include_2" title="Permanent link">&para;</a></h1>
+<h1 id="include_3">include<conio.h><a class="headerlink" href="#include_3" title="Permanent link">&para;</a></h1>
+<p>int main(void){
+    char ch;
+    for(int i=0;i&lt;5;i++){
+        ch=getch();
+        cout&lt;&lt;ch;
+    }
+    return 0;
+}
+<div class="highlight"><pre><span></span><code>&amp;emsp;&amp;emsp;你会发现运行结果是完全不同的，说实话我也搞不清它是怎么编译运行的，以前我在C++ 中用它来实现任意键继续的功能就发现了这个问题。&lt;font color = red&gt;如果在`getch();`后面有个`cout&lt;&lt;&quot;……&quot;;`语句的话他会先执行下面的`cout&lt;&lt;&quot;……&quot;;`然后再执行`getch();`实现停顿，有时再两个语句中间加上一个`cout&lt;&lt;endl;`可以解决这个问题，但如果用C中的printf()就从没有出现过这种问题。至于到底是为什么，我也不知道，只能猜想，可能是因为getch()是C的函数库中的函数，在C++中不怎么好用，就是说是编译系统本身的问题，与我们写的程序没有关系。不知道我分析是不是正确的，还希望高手能予以指点，谢谢！&lt;/font&gt;
+&amp;emsp;&amp;emsp;有人会说，既然是C的函数库中的，那么就应该淘汰了，我们还研究它，还用它干嘛？但是我发现还是有用着它的地方，否则我也不会在这里说这么多来耽误大家的时间。我就举个例子吧，程序如下：
+```c?linenums
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+int main(void){
+    char ch=&#39;*&#39;;
+    while(ch==&#39;*&#39;){
+        printf(&quot;/n按 * 继续循环，按其他键退出！&quot;);
+        ch=getch();
+    }
+    printf(&quot;/n退出程序！&quot;);
+    return 0;    
+}
+</code></pre></div>
+&emsp;&emsp;我们可以在这个循环体中添加我们想要的功能，程序中按*继续循环，其他任意键退出，而且利用<code>getch()</code>无回显的特性，我们不管按什么，都不会在屏幕上留下痕迹，使我们的界面达到美观效果，如果还有更好的办法实现这个功能，我可能就不会在这里提这么多了。如果你真的有更好的办法，请一定告诉我，谢谢！
+&emsp;&emsp;下面我把别人网页上的几个例子转载如下：
+<font color = green>//例一：这个例子是为了说明getch()和getche()的区别</font>
+```c?linenums</p>
+<h1 id="include_4">include<stdio.h><a class="headerlink" href="#include_4" title="Permanent link">&para;</a></h1>
+<h1 id="include_5">include<conio.h><a class="headerlink" href="#include_5" title="Permanent link">&para;</a></h1>
+<p>int main(void){
+    char c, ch;
+    c=getch();      /<em>从键盘上读入一个字符不回显送给字符变量c</em>/
+    putchar&copy;;     /<em>输出该字符</em>/
+    ch=getche();    /<em>从键盘上带回显的读入一个字符送给字符变量ch</em>/
+    putchar(ch);
+    printf("/n/n");
+    return 0;
+}
+<div class="highlight"><pre><span></span><code>--------------------------------------
+&lt;font color = &quot;Green&quot;&gt;//例二：这个例子是演示交互输入的过程中完成暂停功能&lt;/font&gt;
+```c?linenums
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+int main(void){
+    char c, s[20];
+    printf(&quot;Name:&quot;);
+    gets(s);
+    printf(&quot;Press any key to continue...&quot;);
+    getch();    /*等待输入任一键*/
+    return 0;
+}
+</code></pre></div>
+<font color = "Green">//例三：getchar()函数也是从键盘上读入一个字符，并带回显。它与前面两个函数的区别在于：
+//　　　getchar()函数等待输入直到按回车才结束，回车前的所有输入字符都会逐个显示在屏幕上。
+//　　　但只有第一个字符作为函数的返回值。</font>
+```c?linenums</p>
+<h1 id="include_6">include<stdio.h><a class="headerlink" href="#include_6" title="Permanent link">&para;</a></h1>
+<h1 id="include_7">include<conio.h><a class="headerlink" href="#include_7" title="Permanent link">&para;</a></h1>
+<p>int main(void){
+    char c;
+    c=getchar();    /<em>从键盘读入字符直到回车结束</em>/
+        //getchar()在这里它只返回你输入字符串的第一个字符，并把返回值赋值给c
+    putchar&copy;;     /<em>显示输入的第一个字符</em>/
+    return 0;
+}
+<div class="highlight"><pre><span></span><code>//例四：呵呵，这个程序你运行一下，相信你又会有疑问了
+```c?linenums
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+int main(void){
+    char c;
+    while ((c=getchar())!=&#39;\n&#39;)/*每个getchar()依次读入一个字符*/
+    printf(&quot;%c&quot;,c);         /*按照原样输出*/
+    return 0;
+}
+</code></pre></div>
+&emsp;&emsp;例四的程序运行时，首先停下来，等你输入一串字符串，输入完毕后，它把你输入的整个字符串都输出来了，咦，你不是说getchar()只返回第一个字符么，这里怎么？
+&emsp;&emsp;不要急，我慢慢跟你解释，忍耐一下，马上就讲完了。因为我们输入的字符串并不是取了第一个字符就把剩下的字符串丢掉了，它还在我们的内存中，就好比，开闸放水，我们把水放到闸里去以后，开一次闸就放掉一点，开一次就放掉一点，直到放光了为止，我们输入的字符串也是这么一回事，首先我们输入的字符串是放在内存的缓冲区中的，我们调用一次<code>getchar()</code>就把缓冲区中里出口最近的一个字符输出，也就是最前面的一个字符输出，输出后，就把它释放掉了，但后面还有字符串，所以我们就用循环把最前面的一个字符一个个的在内存中释放掉，直到不满足循环条件退出为止。例子中循环条件里的'/n'实际上就是你输入字符串后的回车符，所以意思就是说，直到遇到回车符才结束循环，而<code>getchar(</code>函数就是等待输入直到按回车才结束，所以实现了整个字符串的输出。当然，我们也可以把循环条件改一下，比如<code>while ((c=getchar())!='a')</code>，什么意思呢，意思就是遇到字符'a'就停止循环。 </p>
+<blockquote>
+<p>--------------------- 本文来自 猫已经找不回了 的CSDN 博客 ，全文地址请点击：<a href="https://blog.csdn.net/hairetz/article/details/4161954?utm_source=copy">https://blog.csdn.net/hairetz/article/details/4161954?utm_source=copy</a></p>
+</blockquote>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
