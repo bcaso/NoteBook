@@ -79,6 +79,7 @@ nav: # yml数组
       - "WSL使用":               ./Tools/Windows_Terminal/WSL使用.md
     - Git:
       - "Git command usage":     ./Tools/Git/git_command.md
+    - mkdocs:                    ./Tools/mkdocs.md
     # Tools_end }}}
   - English: # {{{
     - "写作高级短句":                        ./English/写作高级短句.md

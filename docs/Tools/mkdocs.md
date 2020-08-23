@@ -40,3 +40,8 @@ Here's how to submit changes after deployment:
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+<br/>
+
+!!! note
+    There can be no other files in the same level directory of mkdocs.yml, including README.MD, but temporary files of vim are fine
+
